@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 97c23768b2b10c8408e6848815a67fd8
+timeCreated: 1511129051
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Vollkorn SC
+  fontNames:
+  - Vollkorn SC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6fb6d0c2d4b410b43bb202ebdc65154f, type: 3}
+  - {fileID: 12800000, guid: 47165698acbfb3d48806d2240a9b6b47, type: 3}
+  - {fileID: 12800000, guid: 4bb1247b5fea12646bc907ed4afbe7dd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

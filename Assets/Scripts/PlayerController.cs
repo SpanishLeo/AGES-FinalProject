@@ -19,12 +19,17 @@ public class PlayerController : MonoBehaviour
     private LayerMask whatIsGround;
     [SerializeField]
     private int playerNumber = 1;
+    [SerializeField]
+    private GameObject opponent;
     #endregion
 
     #region Private Fields
     private float horizontalInput;
+    private float attackTimer = 0;
+    private float attackCoolDown = 0.3f;
     private bool pressedJump;
     private bool pressedAttack;
+    private bool playerAttacking;
     private bool isOnGround;
     private bool facingRight = true;
     private Rigidbody2D playerRigidbody2D;
@@ -37,6 +42,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        attackRangeCheck.enabled = false;
 	}
 	
 	void Update ()
@@ -45,13 +51,14 @@ public class PlayerController : MonoBehaviour
         GetJumpInput();
         GetAttackInput();
         UpdateIsOnGround();
+        HandlePlayerJump();
+        HandlePlayerAttack();
+        HandlePlayerAnimation();
 	}
 
     private void FixedUpdate()
     {
         HandlePlayerMovement();
-        HandlePlayerJump();
-        HandlePlayerAttack();
     }
 
     private void GetMovementInput()
@@ -66,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void GetAttackInput()
     {
-        pressedAttack = Input.GetButton("Fire1");
+        pressedAttack = Input.GetButtonDown("Fire1");
     }
 
     private void HandlePlayerMovement()
@@ -89,7 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, playerJumpHeight);
 
-            //audioSource.Play();
+            audioSource.Play();
 
             isOnGround = false;
         }
@@ -97,11 +104,29 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePlayerAttack()
     {
-        
-
-        if (pressedAttack && isOnGround)
+        if (pressedAttack && isOnGround && !playerAttacking)
         {
+            Debug.Log("Attack");
 
+            playerAttacking = true;
+
+            attackTimer = attackCoolDown;
+
+            attackRangeCheck.enabled = true;
+        }
+
+        if (playerAttacking)
+        {
+            if (attackTimer > 0)
+            {
+                attackTimer -= Time.deltaTime;
+                opponent.SetActive(false);
+            }
+            else
+            {
+                playerAttacking = false;
+                attackRangeCheck.enabled = false;
+            }
         }
     }
 
@@ -114,7 +139,13 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePlayerAnimation()
     {
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
+        animator.SetFloat("vSpeed", playerRigidbody2D.velocity.y);
+
+        animator.SetBool("Ground", isOnGround);
+
+        animator.SetBool("Attacking", playerAttacking);
     }
 
     private void Flip()
@@ -125,5 +156,9 @@ public class PlayerController : MonoBehaviour
         transform.localScale = theScale;
     }
 
-
+    private void DeactivatePlayer()
+    {
+        //unfreeze z rotation in player
+        //diable rigigbody
+    }
 }
