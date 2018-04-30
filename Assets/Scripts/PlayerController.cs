@@ -37,8 +37,15 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     #endregion
 
+    public bool IsAlive { get; set; }
+    public int PlayerNumber
+    { 
+        get { return playerNumber; } 
+    }
+
     void Start ()
     {
+        IsAlive = true;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -51,15 +58,17 @@ public class PlayerController : MonoBehaviour
         GetJumpInput();
         GetAttackInput();
         UpdateIsOnGround();
-        HandlePlayerJump();
-        HandlePlayerAttack();
-        HandlePlayerAnimation();
+
+        if (IsAlive)
+        {
+            HandlePlayerJump();
+            HandlePlayerMovement();
+            HandlePlayerAnimation();
+        }
+        
+        //HandlePlayerAttack();
 	}
 
-    private void FixedUpdate()
-    {
-        HandlePlayerMovement();
-    }
 
     private void GetMovementInput()
     {
@@ -102,12 +111,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeDamage()
+    {
+        Debug.Log("Taking damage!");
+
+        IsAlive = false;
+
+        playerRigidbody2D.constraints = RigidbodyConstraints2D.None;
+
+        PlayerRespawn playerRespawn = gameObject.GetComponent<PlayerRespawn>();
+
+        playerRespawn.Respawn();
+    }
+
     private void HandlePlayerAttack()
     {
         if (pressedAttack && isOnGround && !playerAttacking)
         {
-            Debug.Log("Attack");
-
             playerAttacking = true;
 
             attackTimer = attackCoolDown;
@@ -120,7 +140,6 @@ public class PlayerController : MonoBehaviour
             if (attackTimer > 0)
             {
                 attackTimer -= Time.deltaTime;
-                opponent.SetActive(false);
             }
             else
             {
@@ -154,11 +173,5 @@ public class PlayerController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-    }
-
-    private void DeactivatePlayer()
-    {
-        //unfreeze z rotation in player
-        //diable rigigbody
     }
 }

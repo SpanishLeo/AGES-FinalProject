@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Hazard : MonoBehaviour
 {
+    [SerializeField]
+    private Rigidbody2D playerRigidbody2D;
+
     private AudioSource audioSource;
     private GameObject player;
 
@@ -18,7 +21,7 @@ public class Hazard : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            //deacivate player
+            DeactivatePlayer();
  
             PlayerRespawn playerRespawn = collision.gameObject.GetComponent<PlayerRespawn>();
 
@@ -30,7 +33,7 @@ public class Hazard : MonoBehaviour
 
     private void DeactivatePlayer()
     {
-        //unfreeze z rotation in player
+        playerRigidbody2D.constraints = RigidbodyConstraints2D.None;
         //diable rigigbody
     }
 }
