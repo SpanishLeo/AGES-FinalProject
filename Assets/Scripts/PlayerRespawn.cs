@@ -10,17 +10,7 @@ public class PlayerRespawn : MonoBehaviour
 
     public void Respawn()
     {
-        if (SpawnPoint.currentCheckpoint != null)
-        {
-            //Move player to last checkpoint position, if there is a current checkpoint set.
-            gameObject.transform.position =
-                SpawnPoint.currentCheckpoint.transform.position;
-        }
-        else
-        {
-            //If there is no current checkpoint, reload the level.
             StartCoroutine(RestartLevel());
-        }
     }
 
     IEnumerator RestartLevel()

@@ -16,6 +16,11 @@ public class PlayerAttack : MonoBehaviour
     private float attackCooldownInSeconds = 1f;
 
     private bool isOnCooldown = false;
+    private bool playerAttacking;
+    private float attackTimer = 0;
+    private float attackCoolDown = 0.3f;
+    private Animator animator;
+
 
     private string AttackInputName
     {
@@ -23,6 +28,11 @@ public class PlayerAttack : MonoBehaviour
         {
             return "Fire" + playerController.PlayerNumber;
         }
+    }
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -40,7 +50,11 @@ public class PlayerAttack : MonoBehaviour
         if (pressedAttack && !isOnCooldown)
         {
             isOnCooldown = true;
+
+            playerAttacking = true;
+
             StartCoroutine(WaitForAttackCooldown());
+
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackRangePostion.position, attackRadius, whatCanBeAttacked);
 
             bool didWeHitAnything = hitObjects.Length > 0;
@@ -62,6 +76,11 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void HandlePlayerAnimation()
+    {
+        animator.SetBool("Attacking", playerAttacking);
     }
 
     private IEnumerator WaitForAttackCooldown()
