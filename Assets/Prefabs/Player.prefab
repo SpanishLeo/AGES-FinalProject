@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 61364046162374828}
   - component: {fileID: 58795739442249922}
   - component: {fileID: 114633992152927360}
-  - component: {fileID: 114403933905420032}
   - component: {fileID: 95674149133475424}
   - component: {fileID: 82839500041838756}
   m_Layer: 8
@@ -313,18 +312,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackCooldownInSeconds: 1
---- !u!114 &114403933905420032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1927398186023716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a3b59e3abc1584b95cc1d57a0dbc2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnTimer: 5
 --- !u!114 &114633992152927360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,12 +327,10 @@ MonoBehaviour:
   playerJumpHeight: 6
   groundCheckPosition: {fileID: 4923989424272508}
   groundCheckRadius: 0.35
-  attackRangeCheck: {fileID: 58371576646452292}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512
   playerNumber: 1
-  opponent: {fileID: 0}
 --- !u!212 &212446110339663146
 SpriteRenderer:
   m_ObjectHideFlags: 1

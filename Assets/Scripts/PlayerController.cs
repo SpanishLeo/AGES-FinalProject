@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action<PlayerController> PlayerDied;
+
     #region Editor Fields
     [SerializeField]
     private float playerMoveSpeed = 8;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     public bool IsAlive { get; set; }
+
     public int PlayerNumber
     { 
         get { return playerNumber; } 
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
         GetAttackInput();
         UpdateIsOnGround();
 
-        if (IsAlive)
+        if (IsAlive == true)
         {
             HandlePlayerJump();
             HandlePlayerMovement();
@@ -118,9 +122,10 @@ public class PlayerController : MonoBehaviour
 
         playerRigidbody2D.constraints = RigidbodyConstraints2D.None;
 
-        PlayerRespawn playerRespawn = gameObject.GetComponent<PlayerRespawn>();
-
-        playerRespawn.Respawn();
+        if (PlayerDied != null)
+        {
+            PlayerDied.Invoke(this);
+        }
     }
 
     private void UpdateIsOnGround()

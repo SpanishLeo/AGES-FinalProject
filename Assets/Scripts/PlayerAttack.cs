@@ -37,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (playerController.IsAlive)
+        if (playerController.IsAlive == true)
         {
             HandlePlayerAttack();
         }

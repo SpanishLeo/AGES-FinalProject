@@ -200,14 +200,14 @@ InputManager:
   - serializedVersion: 3
     m_Name: Horizontal
     descriptiveName: 
-    descriptiveNegativeName: left
-    negativeButton: right
-    positiveButton: a
-    altNegativeButton: d
-    altPositiveButton: joystick button 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 3
-    dead: 0.001
-    sensitivity: 1000
+    dead: 0.5
+    sensitivity: 3
     snap: 0
     invert: 0
     type: 2
@@ -216,14 +216,14 @@ InputManager:
   - serializedVersion: 3
     m_Name: Vertical
     descriptiveName: 
-    descriptiveNegativeName: left
-    negativeButton: right
-    positiveButton: a
-    altNegativeButton: d
-    altPositiveButton: joystick button 1
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 3
-    dead: 0.001
-    sensitivity: 1000
+    dead: 0.5
+    sensitivity: 3
     snap: 0
     invert: 0
     type: 2
