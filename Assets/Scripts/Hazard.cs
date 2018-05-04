@@ -6,20 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class Hazard : MonoBehaviour
 {
-    public static event Action<PlayerController> PlayerDied;
-
     [SerializeField]
     private Rigidbody2D playerRigidbody2D;
 
     private AudioSource audioSource;
     private GameObject player;
     private PlayerController playerController;
+    private PlayerController playerHit;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = GetComponent<PlayerController>();
+        playerHit = player.GetComponent<PlayerController>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,16 +30,10 @@ public class Hazard : MonoBehaviour
 
             audioSource.Play();
 
-            if (PlayerDied != null)
+            if (playerHit != null)
             {
-                PlayerDied.Invoke(playerController);
+                playerHit.TakeDamage();
             }
         }
-    }
-
-    private void DeactivatePlayer()
-    {
-        playerRigidbody2D.constraints = RigidbodyConstraints2D.None;
-        //disable rigigbody
     }
 }

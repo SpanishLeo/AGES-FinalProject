@@ -9,7 +9,7 @@ public class GameWinner : MonoBehaviour
     [SerializeField]
     private float respawnTimer = 5f;
 
-    private int startingLives = 4;
+    private int startingLives = 2;
     private static int player1LivesLeft;
     private static int player2LivesLeft;
     private static GameWinner instance;
