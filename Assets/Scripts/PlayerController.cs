@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     private LayerMask whatIsGround;
     [SerializeField]
     private int playerNumber = 1;
+    [SerializeField]
+    private AudioSource jumpAudioSource;
+    [SerializeField]
+    private AudioSource hitAudioSource;
     #endregion
 
     #region Private Fields
@@ -29,8 +33,8 @@ public class PlayerController : MonoBehaviour
     private bool isOnGround;
     private bool facingRight = true;
     private Rigidbody2D playerRigidbody2D;
-    private AudioSource audioSource;
     private Animator animator;
+    private AudioSource[] playerSounds;
     #endregion
 
     public bool IsAlive { get; set; }
@@ -44,8 +48,10 @@ public class PlayerController : MonoBehaviour
     {
         IsAlive = true;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
-        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        playerSounds = GetComponents<AudioSource>();
+        jumpAudioSource = playerSounds[0];
+        hitAudioSource = playerSounds[1];
 	}
 	
 	void Update ()
@@ -99,7 +105,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, playerJumpHeight);
 
-            audioSource.Play();
+            jumpAudioSource.Play();
 
             isOnGround = false;
         }
@@ -116,7 +122,9 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log("Taking damage!");
+        Debug.Log("Player " + playerNumber + " Taking damage!");
+
+        hitAudioSource.Play();
 
         IsAlive = false;
 

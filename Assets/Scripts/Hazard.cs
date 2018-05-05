@@ -6,19 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class Hazard : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D playerRigidbody2D;
-
-    private AudioSource audioSource;
+    //private AudioSource audioSource;
     private GameObject player;
-    private PlayerController playerController;
     private PlayerController playerHit;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerController = GetComponent<PlayerController>();
         playerHit = player.GetComponent<PlayerController>();
     }
 
@@ -26,9 +21,10 @@ public class Hazard : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Hazard Hit Player");
+            Debug.Log("Hazard Hit Player " );
 
-            audioSource.Play();
+
+            //audioSource.Play();
 
             if (playerHit != null)
             {

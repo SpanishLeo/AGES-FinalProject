@@ -9,4 +9,13 @@ public class EndMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu Scene");
     }
+
+    public void QuitGameButtonClicked()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

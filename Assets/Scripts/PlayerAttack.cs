@@ -13,12 +13,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private LayerMask whatCanBeAttacked;
     [SerializeField]
-    private float attackCooldownInSeconds = 1f;
+    private float attackCooldownInSeconds = .5f;
 
     private bool isOnCooldown = false;
     private bool playerAttacking;
-    private float attackTimer = 0;
-    private float attackCoolDown = 0.3f;
+    private float attackAnimationTimer = 0;
+    private float attackAnimationCoolDown = 0.3f;
+    private AudioSource attackAudioSource;
     private Animator animator;
 
 
@@ -32,7 +33,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
+        attackAudioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -40,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
         if (playerController.IsAlive == true)
         {
             HandlePlayerAttack();
+            HandlePlayerAnimation();
         }
     }
 
@@ -52,6 +55,10 @@ public class PlayerAttack : MonoBehaviour
             isOnCooldown = true;
 
             playerAttacking = true;
+
+            attackAnimationTimer = attackAnimationCoolDown;
+
+            attackAudioSource.Play();
 
             StartCoroutine(WaitForAttackCooldown());
 
@@ -75,11 +82,24 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }
             }
+
         }
     }
 
     private void HandlePlayerAnimation()
     {
+        if (playerAttacking)
+        {
+            if (attackAnimationTimer > 0)
+            {
+                attackAnimationTimer -= Time.deltaTime;
+            }
+            else
+            {
+                playerAttacking = false;
+            }
+        }
+
         animator.SetBool("Attacking", playerAttacking);
     }
 
