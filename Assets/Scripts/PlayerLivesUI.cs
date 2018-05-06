@@ -5,15 +5,28 @@ using UnityEngine.UI;
 
 public class PlayerLivesUI : MonoBehaviour
 {
-    private Text text; 
+    [SerializeField]
+    private Text player1LivesText;
+    [SerializeField]
+    private Text player2LivesText;
+    [SerializeField]
+    private Text roundOverText;
 
-	void Start ()
+    private PlayerController playerController;
+
+    void Start ()
     {
-        text = GetComponent<Text>();
+
 	}
 
 	void Update ()
     {
-		
-	}
+        player1LivesText.text = "Player 1 Lives: " + GameWinner.Player1LivesLeft;
+        player2LivesText.text = "Player 2 Lives: " + GameWinner.Player2LivesLeft;
+
+        //if (playerController.IsAlive == false)
+        //{
+        //    roundOverText.enabled = true;
+        //}
+    }
 }

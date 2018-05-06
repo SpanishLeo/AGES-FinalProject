@@ -9,11 +9,11 @@ public class GameWinner : MonoBehaviour
     [SerializeField]
     private float respawnTimer = 5f;
 
-    private int startingLives = 5;
-    private static int player1LivesLeft;
-    private static int player2LivesLeft;
+    private int startingLives = 10;
     private static GameWinner instance;
 
+    public static int Player1LivesLeft { get; private set; }
+    public static int Player2LivesLeft { get; private set; }
     public static int PlayerNumberTheWon { get; private set; }
 
     //PUT IN TITLE SCENE on empty game object
@@ -39,19 +39,19 @@ public class GameWinner : MonoBehaviour
 
     private void OnStartingNewGame()
     {
-        player1LivesLeft = startingLives;
-        player2LivesLeft = startingLives;
+        Player1LivesLeft = startingLives;
+        Player2LivesLeft = startingLives;
     }
 
     private void AdjustPlayerLives(PlayerController playerThatDied)
     {
         if (playerThatDied.PlayerNumber == 1)
         {
-            player1LivesLeft--;
+            Player1LivesLeft--;
         }
         else
         {
-            player2LivesLeft--;
+            Player2LivesLeft--;
         }
     }
 
@@ -59,12 +59,12 @@ public class GameWinner : MonoBehaviour
     {
         int playerNumberThatWon;
 
-        if (player1LivesLeft < 1)
+        if (Player1LivesLeft < 1)
         {
             playerNumberThatWon = 2;
             HandleGameOver(playerNumberThatWon);
         }
-        else if (player2LivesLeft < 1)
+        else if (Player2LivesLeft < 1)
         {
             playerNumberThatWon = 1;
             HandleGameOver(playerNumberThatWon);
