@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
     private bool isOnGround;
     private bool facingRight = true;
     private Rigidbody2D playerRigidbody2D;
-    private Animator animator;
+    private Animator playerAnimator;
+    private BoxCollider2D playerBoxCollider2D;
+    private CircleCollider2D playerCircleCollider2D;
     private AudioSource[] playerSounds;
     #endregion
 
@@ -47,7 +49,9 @@ public class PlayerController : MonoBehaviour
     {
         IsAlive = true;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
+        playerBoxCollider2D = GetComponent<BoxCollider2D>();
+        playerCircleCollider2D = GetComponent<CircleCollider2D>();
         playerSounds = GetComponents<AudioSource>();
         jumpAudioSource = playerSounds[0];
         hitAudioSource = playerSounds[1];
@@ -106,11 +110,11 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePlayerAnimation()
     {
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        playerAnimator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
-        animator.SetFloat("vSpeed", playerRigidbody2D.velocity.y);
+        playerAnimator.SetFloat("vSpeed", playerRigidbody2D.velocity.y);
 
-        animator.SetBool("Ground", isOnGround);
+        playerAnimator.SetBool("Ground", isOnGround);
     }
 
     public void TakeDamage()
@@ -121,7 +125,12 @@ public class PlayerController : MonoBehaviour
 
         IsAlive = false;
 
+        //disable player rigidbody and colliders
+        //this way they fall over and off the map
+        //also doesnt allow multiple damage to be taken
         playerRigidbody2D.constraints = RigidbodyConstraints2D.None;
+        playerBoxCollider2D.enabled = false;
+        playerCircleCollider2D.enabled = false;
 
         if (PlayerDied != null)
         {

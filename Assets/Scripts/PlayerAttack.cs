@@ -49,8 +49,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void HandlePlayerAttack()
     {
-        //bool pressedAttack = Input.GetButtonDown(AttackInputName);
-
         if (pressedAttack && !isOnCooldown)
         {
             isOnCooldown = true;
