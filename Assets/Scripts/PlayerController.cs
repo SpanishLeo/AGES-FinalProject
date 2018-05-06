@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     #region Private Fields
     private float horizontalInput;
     private bool pressedJump;
-    private bool pressedAttack;
     private bool isOnGround;
     private bool facingRight = true;
     private Rigidbody2D playerRigidbody2D;
@@ -58,7 +57,6 @@ public class PlayerController : MonoBehaviour
     {
         GetMovementInput();
         GetJumpInput();
-        GetAttackInput();
         UpdateIsOnGround();
 
         if (IsAlive == true)
@@ -78,11 +76,6 @@ public class PlayerController : MonoBehaviour
     private void GetJumpInput()
     {
         pressedJump = Input.GetButtonDown("Jump" + playerNumber);
-    }
-
-    private void GetAttackInput()
-    {
-        pressedAttack = Input.GetButtonDown("Fire" + playerNumber);
     }
 
     private void HandlePlayerMovement()

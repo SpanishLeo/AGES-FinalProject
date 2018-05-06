@@ -15,30 +15,26 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float attackCooldownInSeconds = .5f;
 
+    private bool pressedAttack;
     private bool isOnCooldown = false;
     private bool playerAttacking;
     private float attackAnimationTimer = 0;
     private float attackAnimationCoolDown = 0.3f;
     private AudioSource attackAudioSource;
     private Animator animator;
-
-
-    private string AttackInputName
-    {
-        get
-        {
-            return "Fire" + playerController.PlayerNumber;
-        }
-    }
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
         attackAudioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
+        GetAttackInput();
+
         if (playerController.IsAlive == true)
         {
             HandlePlayerAttack();
@@ -46,9 +42,14 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void GetAttackInput()
+    {
+        pressedAttack = Input.GetButtonDown("Fire" + playerController.PlayerNumber);
+    }
+
     private void HandlePlayerAttack()
     {
-        bool pressedAttack = Input.GetButtonDown(AttackInputName);
+        //bool pressedAttack = Input.GetButtonDown(AttackInputName);
 
         if (pressedAttack && !isOnCooldown)
         {
@@ -92,11 +93,13 @@ public class PlayerAttack : MonoBehaviour
         {
             if (attackAnimationTimer > 0)
             {
+                spriteRenderer.enabled = true;
                 attackAnimationTimer -= Time.deltaTime;
             }
             else
             {
                 playerAttacking = false;
+                spriteRenderer.enabled = false;
             }
         }
 

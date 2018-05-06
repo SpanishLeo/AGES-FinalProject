@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114682334708736494}
   - component: {fileID: 114698906589339900}
   - component: {fileID: 82142072114797060}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Falling Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300202, guid: 4385ecc81bdeaca4cb54422e03f330dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -6,13 +6,11 @@ public class FallingObject : MonoBehaviour
 {
     private Rigidbody2D myRigidBody;
     private AudioSource audioSource;
-    private SpriteRenderer spriteRenderer;
 
 	void Start ()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
     void OnTriggerEnter2D(Collider2D other)

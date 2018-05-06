@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerLivesUI : MonoBehaviour
 {
-    [SerializeField]
-    private int playerDeathsToWin = 3;
-
     private Text text; 
 
 	void Start ()
