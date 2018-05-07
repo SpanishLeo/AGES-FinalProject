@@ -378,6 +378,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 129991377}
+--- !u!1001 &150985233
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958686046725956, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4567337467f692c42817bb75c714dd9a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &253155897
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +490,8 @@ MonoBehaviour:
   m_Text: 'Game Desgin by Alejandro Alvarez
 
     Level Art by Buch & Joe Williamson on OpenGameArt.org
+
+    Music "Instinct" from www.bensound.com
 
     Scripting Assistance through Advanced Game Engine Scripting'
 --- !u!222 &253155900
@@ -895,6 +939,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 713638154}
+--- !u!1 &762475504 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1432738758426144, guid: 4567337467f692c42817bb75c714dd9a,
+    type: 2}
+  m_PrefabInternal: {fileID: 150985233}
+--- !u!114 &762475505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762475504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce37efd80ed6d74989fc0c2bb8e573b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &896976032
 GameObject:
   m_ObjectHideFlags: 0
