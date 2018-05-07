@@ -80,10 +80,6 @@ public class GameWinner : MonoBehaviour
         PlayerNumberTheWon = playerNumberThatWon;
 
         GameOver();
-
-        // DO whatever you want but you know which player number won.
-        // SceneManager.LoadScene(EndScene);
-        // YOur end scene can look GameWinner.PlayerNumberThatWon and do whatever w/ it
     }
 
     private void Respawn()
